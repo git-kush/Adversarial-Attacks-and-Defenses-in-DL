@@ -39,6 +39,8 @@ for t in range(30):
     p = zebra_tensor + delta
     out = model(norm(p))
     loss = -torch.nn.CrossEntropyLoss()(out, torch.LongTensor([340]))
+    # for targeted attacks (use lr = 5e-3, with iterations > 10e2)
+    #loss = (-torch.nn.CrossEntropyLoss()(out, torch.LongTensor([341])) + torch.nn.CrossEntropyLoss()(out, torch.LongTensor([1])))    # 1 is goldfish
 
     # if t%5 == 0:
     #     print(t, loss.item())
